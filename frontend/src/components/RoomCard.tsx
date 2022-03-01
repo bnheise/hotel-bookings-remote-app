@@ -13,17 +13,17 @@ const RoomCard: React.FC<IRoomCard> = (props: IRoomCard) => {
 
   return (
     <Card className="card-room">
-        <Card.Img variant="top" src={images[0].image} />
-        <Card.Body>
-            <Link to={`/room/${_id}`}>
-              <Card.Title as="h4">{name}</Card.Title>
-            </Link>
-            <Card.Text as="h5" className="mt-2 mb-2" >${pricePerNight} / Per Night</Card.Text>
-            <Rating reviews={ratings} />
-            <LinkContainer to={`/room/${_id}`}>
-              <Button className="w-100" variant="primary">View Details</Button>
-            </LinkContainer>
-        </Card.Body>
+      <Card.Img variant="top" src={images[0].image} />
+      <Card.Body>
+        <Link to={`/room/${_id}`}>
+          <Card.Title as="h4">{name}</Card.Title>
+        </Link>
+        <Card.Text as="h5" className="mt-2 mb-2" >${pricePerNight} / Per Night</Card.Text>
+        <Rating reviews={ratings} />
+        <LinkContainer to={`/room/${_id}`}>
+          <Button className="w-100" variant="primary">View Details</Button>
+        </LinkContainer>
+      </Card.Body>
     </Card>
   );
 };

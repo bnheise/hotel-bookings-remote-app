@@ -1,12 +1,12 @@
 import { Dispatch } from 'redux';
 import * as actions from '../constants/UserConstants';
-import axios from 'axios';
+import { instance as axios } from '../../axios';
 import { IUpdatePassword, IUser, IUserLogin, IUserRegister } from '../../interfaces/IUser';
 
 export const login = (user: IUserLogin) => async (dispatch: Dispatch) => {
 
     try {
-        
+
         dispatch({ type: actions.USER_LOGIN_REQUEST });
 
         const config = {
@@ -23,11 +23,11 @@ export const login = (user: IUserLogin) => async (dispatch: Dispatch) => {
 
     } catch (error: any) {
         dispatch({
-        type: actions.USER_LOGIN_FAIL,
-        payload:
-            error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
+            type: actions.USER_LOGIN_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
         });
     }
 
@@ -43,7 +43,7 @@ export const logout = () => (dispatch: Dispatch) => {
 export const register = (user: IUserRegister) => async (dispatch: Dispatch) => {
 
     try {
-        
+
         dispatch({ type: actions.USER_REGISTER_REQUEST });
 
         const config = {
@@ -61,11 +61,11 @@ export const register = (user: IUserRegister) => async (dispatch: Dispatch) => {
 
     } catch (error: any) {
         dispatch({
-        type: actions.USER_REGISTER_FAIL,
-        payload:
-            error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
+            type: actions.USER_REGISTER_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
         });
     }
 
@@ -74,7 +74,7 @@ export const register = (user: IUserRegister) => async (dispatch: Dispatch) => {
 export const updateProfile = (user: {}) => async (dispatch: Dispatch, getState: any) => {
 
     try {
-        
+
         dispatch({ type: actions.UPDATE_PROFILE_REQUEST });
 
         const { userLogin: { userInfo } } = getState();
@@ -94,15 +94,15 @@ export const updateProfile = (user: {}) => async (dispatch: Dispatch, getState: 
 
     } catch (error: any) {
         const message =
-        error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message;
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message;
         if (message === "no token, no auth") {
             dispatch<any>(logout());
         }
         dispatch({
-        type: actions.UPDATE_PROFILE_FAIL,
-        payload: message
+            type: actions.UPDATE_PROFILE_FAIL,
+            payload: message
         });
     }
 
@@ -111,7 +111,7 @@ export const updateProfile = (user: {}) => async (dispatch: Dispatch, getState: 
 export const updatePassword = (user: IUpdatePassword) => async (dispatch: Dispatch, getState: any) => {
 
     try {
-        
+
         dispatch({ type: actions.UPDATE_PASSWORD_REQUEST });
 
         const { userLogin: { userInfo } } = getState();
@@ -131,9 +131,9 @@ export const updatePassword = (user: IUpdatePassword) => async (dispatch: Dispat
 
     } catch (error: any) {
         const message =
-        error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message;
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message;
         if (message === "no token, no auth") {
             dispatch<any>(logout());
         }
@@ -149,7 +149,7 @@ export const updatePassword = (user: IUpdatePassword) => async (dispatch: Dispat
 export const fetchUsers = (currentPage: number) => async (dispatch: Dispatch, getState: any) => {
 
     try {
-        
+
         dispatch({ type: actions.FETCH_USERS_REQUEST });
 
         const { userLogin: { userInfo } } = getState();
@@ -166,9 +166,9 @@ export const fetchUsers = (currentPage: number) => async (dispatch: Dispatch, ge
 
     } catch (error: any) {
         const message =
-        error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message;
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message;
         if (message === "no token, no auth") {
             dispatch<any>(logout());
         }
@@ -183,7 +183,7 @@ export const fetchUsers = (currentPage: number) => async (dispatch: Dispatch, ge
 export const deleteUser = (userId: IUser['_id']) => async (dispatch: Dispatch, getState: any) => {
 
     try {
-        
+
         dispatch({ type: actions.DELETE_USER_REQUEST });
 
         const { userLogin: { userInfo } } = getState();
@@ -200,9 +200,9 @@ export const deleteUser = (userId: IUser['_id']) => async (dispatch: Dispatch, g
 
     } catch (error: any) {
         const message =
-        error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message;
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message;
         if (message === "no token, no auth") {
             dispatch<any>(logout());
         }
@@ -217,7 +217,7 @@ export const deleteUser = (userId: IUser['_id']) => async (dispatch: Dispatch, g
 export const detailsUser = (userId: IUser['_id']) => async (dispatch: Dispatch, getState: any) => {
 
     try {
-        
+
         dispatch({ type: actions.GET_USER_REQUEST });
 
         const { userLogin: { userInfo } } = getState();
@@ -234,9 +234,9 @@ export const detailsUser = (userId: IUser['_id']) => async (dispatch: Dispatch, 
 
     } catch (error: any) {
         const message =
-        error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message;
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message;
         if (message === "no token, no auth") {
             dispatch<any>(logout());
         }
@@ -251,7 +251,7 @@ export const detailsUser = (userId: IUser['_id']) => async (dispatch: Dispatch, 
 export const updateUser = (userId: IUser['_id'], userData: {}) => async (dispatch: Dispatch, getState: any) => {
 
     try {
-        
+
         dispatch({ type: actions.UPDATE_USER_REQUEST });
 
         const { userLogin: { userInfo } } = getState();
@@ -268,9 +268,9 @@ export const updateUser = (userId: IUser['_id'], userData: {}) => async (dispatc
 
     } catch (error: any) {
         const message =
-        error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message;
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message;
         if (message === "no token, no auth") {
             dispatch<any>(logout());
         }

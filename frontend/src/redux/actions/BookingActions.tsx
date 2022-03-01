@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import axios from 'axios';
+import { instance as axios } from '../../axios';
 import * as actions from '../constants/BookingConstants';
 import { IRoom } from "../../interfaces/IRoom";
 import { IBooking, ICreateBooking } from "../../interfaces/IBooking";
@@ -15,15 +15,16 @@ export const checkRoomBooking = (id: IRoom['_id'], checkInDate: Date, checkOutDa
             }
         }
 
-        await axios.post(`/api/bookings/check`, {id, checkInDate, checkOutDate}, config);
+        await axios.post(`/api/bookings/check`, { id, checkInDate, checkOutDate }, config);
 
         dispatch({ type: actions.CHECK_ROOM_BOOKING_SUCCESS });
 
     } catch (error: any) {
-        dispatch({ 
-            type: actions.CHECK_ROOM_BOOKING_FAIL, 
-            payload: error.response && error.response.data.message ? 
-            error.response.data.message : error.message });
+        dispatch({
+            type: actions.CHECK_ROOM_BOOKING_FAIL,
+            payload: error.response && error.response.data.message ?
+                error.response.data.message : error.message
+        });
     }
 
 }
@@ -47,15 +48,16 @@ export const createBooking = (bookingData: ICreateBooking) => async (dispatch: D
         dispatch({ type: actions.CREATE_BOOKING_SUCCESS });
 
     } catch (error: any) {
-        dispatch({ 
-            type: actions.CREATE_BOOKING_FAIL, 
-            payload: error.response && error.response.data.message ? 
-            error.response.data.message : error.message });
+        dispatch({
+            type: actions.CREATE_BOOKING_FAIL,
+            payload: error.response && error.response.data.message ?
+                error.response.data.message : error.message
+        });
     }
 
 }
 
-export const getBookedDates = (roomId:  IRoom['_id']) => async (dispatch: Dispatch) => {
+export const getBookedDates = (roomId: IRoom['_id']) => async (dispatch: Dispatch) => {
 
     try {
         dispatch({ type: actions.GET_BOOKED_DATES_REQUEST });
@@ -65,10 +67,11 @@ export const getBookedDates = (roomId:  IRoom['_id']) => async (dispatch: Dispat
         dispatch({ type: actions.GET_BOOKED_DATES_SUCCESS, payload: data });
 
     } catch (error: any) {
-        dispatch({ 
-            type: actions.GET_BOOKED_DATES_FAIL, 
-            payload: error.response && error.response.data.message ? 
-            error.response.data.message : error.message });
+        dispatch({
+            type: actions.GET_BOOKED_DATES_FAIL,
+            payload: error.response && error.response.data.message ?
+                error.response.data.message : error.message
+        });
     }
 
 }
@@ -92,10 +95,11 @@ export const getMyBookings = () => async (dispatch: Dispatch, getState: any) => 
         dispatch({ type: actions.GET_MY_BOOKINGS_SUCCESS, payload: data });
 
     } catch (error: any) {
-        dispatch({ 
-            type: actions.GET_MY_BOOKINGS_FAIL, 
-            payload: error.response && error.response.data.message ? 
-            error.response.data.message : error.message });
+        dispatch({
+            type: actions.GET_MY_BOOKINGS_FAIL,
+            payload: error.response && error.response.data.message ?
+                error.response.data.message : error.message
+        });
     }
 
 }
@@ -119,10 +123,11 @@ export const getAllBookings = (currentPage: number) => async (dispatch: Dispatch
         dispatch({ type: actions.FETCH_BOOKINGS_SUCCESS, payload: data });
 
     } catch (error: any) {
-        dispatch({ 
-            type: actions.FETCH_BOOKINGS_FAIL, 
-            payload: error.response && error.response.data.message ? 
-            error.response.data.message : error.message });
+        dispatch({
+            type: actions.FETCH_BOOKINGS_FAIL,
+            payload: error.response && error.response.data.message ?
+                error.response.data.message : error.message
+        });
     }
 
 }
@@ -145,10 +150,11 @@ export const deleteBooking = (bookingId: IBooking['_id']) => async (dispatch: Di
         dispatch({ type: actions.DELETE_BOOKING_SUCCESS });
 
     } catch (error: any) {
-        dispatch({ 
-            type: actions.DELETE_BOOKING_FAIL, 
-            payload: error.response && error.response.data.message ? 
-            error.response.data.message : error.message });
+        dispatch({
+            type: actions.DELETE_BOOKING_FAIL,
+            payload: error.response && error.response.data.message ?
+                error.response.data.message : error.message
+        });
     }
 
 }

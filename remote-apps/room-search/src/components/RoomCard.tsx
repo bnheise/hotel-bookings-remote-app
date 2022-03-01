@@ -10,10 +10,10 @@ type IRoomCard = Pick<IRoom, '_id' | 'images' | 'name' | 'pricePerNight' | 'rati
 const RoomCard: React.FC<IRoomCard> = (props: IRoomCard) => {
 
   const { _id, images, name, pricePerNight, ratings } = props;
-
+  console.log(images)
   return (
     <Card className="card-room">
-      <Card.Img variant="top" src={images[0].image} />
+      <Card.Img variant="top" src={`http://localhost:3000/${images[0].image}`} />
       <Card.Body>
         {/* <Link to={`/room/${_id}`}> */}
         <Card.Title as="h4">{name}</Card.Title>

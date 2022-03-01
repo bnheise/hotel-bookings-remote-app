@@ -9,6 +9,7 @@ import { IRoom } from './interfaces/IRoom';
 import SearchRooms from "./components/SearchRooms";
 // import { fetchRooms } from './redux/actions/RoomActions';
 import Paginate from "./components/Paginate";
+import { instance as axios } from './axios';
 
 
 const App = () => {
@@ -26,9 +27,27 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   // const { loading, rooms, count, error } = useSelector((state: RootStateOrAny) => state.roomsFetch);
 
-  // useEffect(() => {
-  //   dispatch(fetchRooms(keyword, numOfBeds, roomType, currentPage));
-  // }, [dispatch, keyword, numOfBeds, roomType, currentPage]);
+  useEffect(() => {
+    setLoading(true);
+    const getRooms = async () => {
+      try {
+        const { data } = await axios.get(
+          `/api/rooms/?keyword=${keyword}&numOfBeds=${numOfBeds}&roomType=${roomType}&pageNumber=${currentPage}`
+        );
+        setRooms(data.rooms);
+        setCount(data.count);
+      } catch (e) {
+        let message;
+        if (e instanceof Error) message = e.message
+        setError(message)
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getRooms();
+
+  }, [keyword, numOfBeds, roomType, currentPage]);
 
   return (
     <Container>
